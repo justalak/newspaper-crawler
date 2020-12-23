@@ -1,6 +1,5 @@
 package model
 
-import "time"
 
 type Content struct {
 	Content string `json:"content"`;
@@ -11,7 +10,7 @@ type Content struct {
 type Article struct {
 	Avatar string `json:"avatar"`;
 	Content []Content `json:"content"`;
-	CreatedDate time.Time `json:"created_date"`;
+	CreatedDate string `json:"created_date"`;
 	FeatureImage string `json:"feature_image"`;
 	Href string `json:"href"`;
 	Newspaper string `json:"newspaper"`;

@@ -6,7 +6,6 @@ import (
 	"hoanglv/crawler/model"
 	"io/ioutil"
 	"strings"
-	"time"
 
 	// "strings"
 	// "time"
@@ -31,11 +30,7 @@ func crawl(path string, topic string){
 
 		artTime := e.ChildText(".header-content span.date")
 		strArr := strings.Split(artTime, ",")
-		day := strings.ReplaceAll(strArr[0], " ", "")
-
-		if date, err := time.Parse(day, "DD/MM/YYYY"); err != nil {
-			article.CreatedDate = date
-		}
+		article.CreatedDate = strings.ReplaceAll(strArr[0], " ", "")
 
 		article.Avatar = e.ChildAttr(".fig-picture .lazy", "data-src")
 		article.FeatureImage = e.ChildAttr(".fig-picture img", "data-src")
@@ -68,7 +63,7 @@ func crawl(path string, topic string){
 
 func main() {
 
-	filename = "vnexpress/vnexpress.json"
+	filename = "vtv/vtv.json"
 	data = make([]model.Article, 0)
 	crawl("the-thao", "Thể thao")
 	crawl("the-gioi", "The gioi")

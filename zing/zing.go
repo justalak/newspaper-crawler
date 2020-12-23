@@ -27,7 +27,7 @@ func crawlDanTri(path string, topic string){
 
 		artTime := e.ChildText(".dt-news__time")
 		strArr := strings.Split(artTime, ",")
-		article.CreatedDate = strings.ReplaceAll(strings.Split(strArr[1], "-")[0], " ", "")
+		article.CreatedDate= strings.ReplaceAll(strings.Split(strArr[1], "-")[0], " ", "")
 
 		article.Avatar = e.ChildAttr("img", "data-original")
 		article.Content = make([]model.Content, 0)
@@ -58,7 +58,7 @@ func crawlDanTri(path string, topic string){
 
 func main() {
 
-	filename = "dantri/dantri.json"
+	filename = "zing/zing.json"
 	data = make([]model.Article, 0)
 	crawlDanTri("the-thao", "Thể thao")
 	crawlDanTri("su-kien", "Sự kiện")

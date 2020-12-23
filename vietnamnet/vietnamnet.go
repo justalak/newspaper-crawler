@@ -6,7 +6,6 @@ import (
 	"hoanglv/crawler/model"
 	"io/ioutil"
 	"strings"
-	"time"
 
 	// "strings"
 	// "time"
@@ -31,11 +30,7 @@ func crawl(path string, topic string){
 
 		artTime := e.ChildText(".ArticleDate")
 		strArr := strings.Split(artTime, ",")
-		day := strings.ReplaceAll(strArr[0], " ", "")
-
-		if date, err := time.Parse(day, "DD/MM/YYYY"); err != nil {
-			article.CreatedDate = date
-		}
+		article.CreatedDate= strings.ReplaceAll(strArr[0], "\n", " ")
 
 		article.Avatar = e.ChildAttr(".ImageCenterBox img", "src")
 		article.FeatureImage = e.ChildAttr(".FmsArticleBoxStyle-Images img", "src")
@@ -57,7 +52,7 @@ func crawl(path string, topic string){
 	c.OnRequest(func(r *colly.Request) {
 		fmt.Println(r.URL)
 	})
-	c.Visit(fmt.Sprintf("https://vietnamnet.vn/vn/%s", path))
+	// c.Visit(fmt.Sprintf("https://vietnamnet.vn/vn/%s", path))
 	
 	for i :=2; i<3 ; i++ {
 		url := fmt.Sprintf("https://vietnamnet.vn/vn/%s/trang%d", path, i)
